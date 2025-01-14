@@ -15,9 +15,9 @@ def read_json_data(path: str) -> dict:
     return data
 
 
-data = read_json_data(json_filename)
-print(data)
-print(type(data))
+# data = read_json_data(json_filename)
+# print(data)
+# print(type(data))
 
 
 def create_category_from_json(data: list) -> list[Any]:
@@ -35,12 +35,12 @@ def create_category_from_json(data: list) -> list[Any]:
 if __name__ == "__main__":
     raw_data = read_json_data("../data/data.json")
 
-    print(raw_data)
+    #print(raw_data)
     category_data = create_category_from_json(raw_data)
     print(category_data[0].name)
     print(category_data[0].products)
-    print(len(category_data))
-    print(type(category_data))
-    print(category_data)
-    print(category_data[1].name)
-    print(category_data[1].products)
+    # print(len(category_data))
+    # print(type(category_data))
+    # print(category_data)
+    # print(category_data[1].name)
+    # print(category_data[1].products)
