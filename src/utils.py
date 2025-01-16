@@ -35,7 +35,7 @@ def create_category_from_json(data: list) -> list[Any]:
 if __name__ == "__main__":
     raw_data = read_json_data("../data/data.json")
 
-    #print(raw_data)
+    # print(raw_data)
     category_data = create_category_from_json(raw_data)
     print(category_data[0].name)
     print(category_data[0].products)
