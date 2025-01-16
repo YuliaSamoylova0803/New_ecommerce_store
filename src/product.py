@@ -1,6 +1,3 @@
-from itertools import product
-
-
 class Product:
     """Класс для представления продуктов"""
 
@@ -18,10 +15,12 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
+    def __str__(self):
+        return f"{self.name}, {self.__price} руб. {self.quantity}: 15 шт."
 
     @classmethod
     def new_product(cls, dict_with_params: dict):
-        """Метод, который принимает параметры в виде словаря, а возвращает объект класса """
+        """Метод, который принимает параметры в виде словаря, а возвращает объект класса"""
         name = dict_with_params.get("name")
         description = dict_with_params.get("description")
         price = dict_with_params.get("price")
@@ -29,35 +28,32 @@ class Product:
 
         return cls(name, description, price, quantity)
 
-
     @property
     def price(self):
         return self.__price
 
-
     @price.setter
-    def price(self, new_price: float):
+    def price(self, new_price):
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
-            return
-        self.__price = new_price
+        elif new_price < self.__price:
+            answer = input(f"Цена понижается с {self.__price} по {new_price}. Подтверждаете? (y/n)")
+            if answer == "y":
+                self.__price = new_price
+        else:
+            self.__price = new_price
 
 
-if __name__ == "__main__":
-    new_product = Product.new_product(
-        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
-         "quantity": 5})
-    print(new_product.name)
-    print(new_product.description)
-    print(new_product.price)
-    print(new_product.quantity)
-
-    new_product.price = 800
-    print(new_product.price)
-
-    new_product.price = -100
-    print(new_product.price)
-    new_product.price = 0
-    print(new_product.price)
-
-
+# if __name__ == "__main__":
+#
+#
+#     new_product = Product.new_product(
+#         {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+#          "quantity": 5})
+#     print(new_product.name)
+#     print(new_product.description)
+#     print(new_product.price)
+#     print(new_product.quantity)
+#
+#     new_product.price = 800
+#     print(new_product.price)
