@@ -30,7 +30,7 @@ def product_4():
 def category_1():
     return Category(
         name="Смартфоны",
-        description="Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        description="Смартфоны, как средство для получения дополнительных функций для удобства жизни",
         products=["Samsung Galaxy S23 Ultra", "Iphone 15", "Xiaomi Redmi Note 11"],
     )
 
@@ -40,7 +40,7 @@ def data_test():
     return [
         {
             "name": "Смартфоны",
-            "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни",
+            "description": "Смартфоны, как средство для получения дополнительных функций для удобства жизни",
             "products": [
                 {
                     "name": "Samsung Galaxy C23 Ultra",
@@ -54,9 +54,32 @@ def data_test():
         },
         {
             "name": "Телевизоры",
-            "description": "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+            "description": "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом",
             "products": [
                 {"name": '55" QLED 4K', "description": "Фоновая подсветка", "price": 123000.0, "quantity": 7}
             ],
         },
     ]
+
+
+@pytest.fixture
+def dict_test():
+    return {"name": "Iphone 15", "description": "512GB, Gray space", "price": 210000.0, "quantity": 8}
+
+
+@pytest.fixture
+def new_price():
+    return 125000
+
+
+@pytest.fixture
+def all_products():
+    product1 = Product("Samsung", "Серый цвет", 18, 5)
+
+    category1 = Category("Смартфоны", "Смартфоны, как средство", [product1])
+    return category1
+
+
+@pytest.fixture
+def product_new_product():
+    return Product("Iphone 15", "512GB, Gray space", 120000.0, 8)
