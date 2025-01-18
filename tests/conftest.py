@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category
+from src.category_iterator import CategoryIterator
 from src.product import Product
 
 
@@ -24,6 +25,15 @@ def product_3():
 @pytest.fixture
 def product_4():
     return Product(name='55" QLED 4K', description="Фоновая подсветка", price=123000.0, quantity=7)
+
+
+@pytest.fixture
+def category_add():
+    return Category(
+        name="Смартфоны",
+        description="Смартфоны, как средство для получения дополнительных функций для удобства жизни",
+        products=product_2,
+    )
 
 
 @pytest.fixture
@@ -83,3 +93,27 @@ def all_products():
 @pytest.fixture
 def product_new_product():
     return Product("Iphone 15", "512GB, Gray space", 120000.0, 8)
+
+
+@pytest.fixture
+def category_many():
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+    category_str = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3],
+    )
+    return category_str
+
+
+@pytest.fixture
+def category_iterator(all_products):
+    return CategoryIterator(all_products)
+
+
+@pytest.fixture
+def category_iterator_many(category_many):
+    return CategoryIterator(category_many)
