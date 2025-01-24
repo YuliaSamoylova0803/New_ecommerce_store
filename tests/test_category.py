@@ -47,3 +47,9 @@ def test_category_iterator_many(category_iterator_many):
 
     with pytest.raises(StopIteration):
         next(category_iterator_many)
+
+
+def test_add_product_error(all_products):
+
+    with pytest.raises(TypeError):
+        all_products.add_product(1) == 1
