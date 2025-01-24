@@ -1,6 +1,6 @@
 import pytest
 
-from src.category import Category
+from src.category import Category, Order
 from src.product import Product
 
 
@@ -53,3 +53,12 @@ def test_add_product_error(all_products):
 
     with pytest.raises(TypeError):
         all_products.add_product(1) == 1
+
+
+def test_category_abc(capsys):
+    product_1 = Product("tomato", "red tomato from Azerbaijan", 150, 10)
+    order = Order(product_1, 20)
+
+    message = capsys.readouterr()
+    assert message.out.strip() == "Product(tomato, red tomato from Azerbaijan, 150, 10)"
+    assert repr(order) == "tomato, 150 руб. Остаток: 10 шт.: куплено 20шт. на сумму 3000 рублей"
