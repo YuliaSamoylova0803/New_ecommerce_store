@@ -3,6 +3,7 @@ from src.product import Product
 
 class Smartphone(Product):
     """Класс наследник класса Product: «Смартфон»"""
+
     name: str
     description: str
     price: float
