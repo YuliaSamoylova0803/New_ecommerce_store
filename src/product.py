@@ -25,7 +25,7 @@ class Product(BaseProduct, ProductMixin):
     name: str  # название
     description: str  # описание
     price: float  # цена
-    quantity: str  # количество в наличии
+    quantity: int  # количество в наличии
 
     def __init__(self, name, description, price, quantity):
         """Метод для инициализации экземпляра класса. Задаем значения атрибутам экземпляра."""
@@ -33,7 +33,10 @@ class Product(BaseProduct, ProductMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
     def __str__(self):
@@ -78,8 +81,12 @@ class Product(BaseProduct, ProductMixin):
 #          "quantity": 5})
 #     print(new_product.name)
 #     print(new_product.description)
-#     print(new_product.price)
+#     #print(new_product.price)
 #     print(new_product.quantity)
 #
 #     new_product.price = 800
-#     print(new_product.price)
+#     #print(new_product.price)
+
+# new_product_2 = Product.new_product(
+#     {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+#      "quantity": 0})

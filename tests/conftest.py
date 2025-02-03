@@ -134,3 +134,11 @@ def grass_2():
 @pytest.fixture
 def grass_1():
     return LawnGrass("Газонная трава", "Элитная трава для газона", 500.0, 20, "Россия", "7 дней", "Зеленый")
+
+
+@pytest.fixture
+def category_without_products():
+    return Category(
+        name="Прочие",
+        description="Товары из категории прочие",
+    )

@@ -62,3 +62,19 @@ def test_category_abc(capsys):
     message = capsys.readouterr()
     assert message.out.strip() == "Product(tomato, red tomato from Azerbaijan, 150, 10)"
     assert repr(order) == "tomato, 150 руб. Остаток: 10 шт.: куплено 20шт. на сумму 3000 рублей"
+
+
+def test_middle_price(category_many, category_without_products):
+    assert category_many.middle_price() == 140333.33
+    assert category_without_products.middle_price() == 0
+
+
+def test_custom_exception(capsys, category_many):
+    assert len(category_many.products) == 3
+
+
+def test_custom_exception_2(capsys, category_many):
+    with pytest.raises(ValueError) as excinfo:
+        product_add = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 0)
+        category_many.products = product_add
+        assert str(excinfo.value) == "Товар с нулевым количеством не может быть добавлен"
